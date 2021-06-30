@@ -1,0 +1,43 @@
+{
+  "name": "@gamechangerinteractive/playcanvas-library-test",
+  "version": "1.0.0",
+  "repository": "https://github.com/GameChangerInteractive/test-playcanvas-shared-library.git",
+  "description": "Testing a PlayCanvas shared library",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc && node prepare.js",
+    "build:dev": "tsc && node prepare.js && shx cp -rf dist/* D:\\develop\\projects\\gamechanger\\xeo\\admin\\node_modules\\@gamechangerinteractive\\playcanvas-library-test",
+    "lint": "eslint --cache --fix --ext .ts,.tsx src",
+    "publish": "yarn build && cd dist && npm publish"
+  },
+  "author": "",
+  "license": "ISC",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^3.7.0",
+    "@typescript-eslint/parser": "^3.7.0",
+    "eslint": "^7.5.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "husky": "^4.2.5",
+    "prettier": "^2.0.5",
+    "shelljs": "^0.8.4",
+    "shx": "^0.3.2",
+    "typescript": "^3.9.7"
+  },
+  "dependencies": {
+    "@sentry/browser": "^5.20.0",
+    "axios": "^0.19.2",
+    "fast-json-patch": "^3.0.0-1",
+    "firebase": "^7.16.1",
+    "localforage": "^1.8.1",
+    "p-retry": "^4.5.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint"
+    }
+  }
+}

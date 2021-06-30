@@ -1,0 +1,20 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:12-browsers
+    steps:
+      - checkout
+      - restore_cache:
+          key: cache-{{ checksum "package.json" }}
+      - run: yarn
+      - save_cache:
+          key: cache-{{ checksum "package.json" }}
+          paths:
+            - node_modules
+      - run: sed -i.bak s/{{BUILD_NUM}}/$CIRCLE_BUILD_NUM/g src/utils/index.ts
+      - run: yarn lint
+      - run: yarn build
+      - deploy:
+          command: |
+            npm run publish
