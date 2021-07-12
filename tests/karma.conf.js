@@ -39,20 +39,14 @@ module.exports = function (config) {
       'node_modules/sinon/pkg/sinon.js',
       'node_modules/chai/chai.js',
       'node_modules/playcanvas/build/playcanvas.js',
+      'src/**/*.ts',
 
       // test environment setup
       'tests/setup.js',
 
       // test files - change this to a specific file in order to run a single suite
       'tests/**/test_*.js',
-
-      // resources - list any files here that need to be loaded by tests (i.e. via XHR), or
-      // need to be pre-loaded in order to provide helper functions etc.
-      { pattern: 'tests/test-assets/**/*.*', included: false, served: true, watched: true, nocache: true },
-      { pattern: 'tests/helpers/**/*.js', included: true, served: true, watched: true, nocache: true },
-      { pattern: 'tests/framework/components/script/*.*', included: false, served: true, watched: true, nocache: true },
-      { pattern: 'tests/input/simulate_event.js', included: true, served: true, watched: true, nocache: true },
-      { pattern: 'examples/**/*.*', included: false, served: true, watched: true, nocache: true },
+      'tests/**/test_*.ts',
     ]),
 
     // Serve .gz files with Content-Encoding: gzip
@@ -69,11 +63,13 @@ module.exports = function (config) {
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-    preprocessors: {},
+    preprocessors: {
+      '**/*.ts': ['karma-typescript'],
+    },
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['mocha'],
+    frameworks: ['mocha', 'karma-typescript'],
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
