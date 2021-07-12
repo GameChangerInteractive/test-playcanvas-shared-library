@@ -14,7 +14,8 @@
     },
     "include": [
         "src/**/*.ts",
-        "src/tests/**/*.ts",
+        "tests/**/*.ts",
+        "tests/**/*.js", "scripts/test_ui.js",
     ],
     "exclude": [
         "node_modules",

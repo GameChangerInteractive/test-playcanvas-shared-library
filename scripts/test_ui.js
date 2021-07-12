@@ -1,25 +1,6 @@
-import { JSDOM } from 'jsdom';
-
-declare global {
-  // eslint-disable-next-line @typescript-eslint/no-namespace
-  namespace NodeJS {
-    // eslint-disable-next-line @typescript-eslint/naming-convention
-    interface Global {
-      document: Document;
-      window: Window;
-      navigator: Navigator;
-    }
-  }
-}
-
-const { window } = new JSDOM('<!doctype html><html><body></body></html>');
-global.document = window.document;
-global.window = global.document.defaultView;
-
 import { expect } from 'chai';
-import { Application, ElementComponent, Entity, ScriptComponent } from 'playcanvas';
-import { formatSecondsToDigitalClock } from '../formatSecondsToDigitalClock';
-import { uiText_DigitalClock } from '../uiText_DigitalClock';
+import { Application, Entity } from 'playcanvas';
+import { formatSecondsToDigitalClock } from '../src/formatSecondsToDigitalClock';
 
 describe('Simple Tests', () => {
   it('1 + 1 = 2', () => expect(1 + 1).equals(2));
@@ -40,9 +21,9 @@ describe('Simple Tests', () => {
 });
 
 describe("'uiText_DigitalClock' Tests", () => {
-  let app: Application;
+  let app;
 
-  let canvas: Element;
+  let canvas;
 
   beforeEach(() => {
     canvas = document.createElement('canvas');
@@ -52,13 +33,11 @@ describe("'uiText_DigitalClock' Tests", () => {
   afterEach(() => app.destroy());
 
   it("Does 'uiText_DigitalClock' format the element's text to look like a digital clock", () => {
-    const entity: Entity = new Entity('Test Entity');
-    const elementComponent: ElementComponent = <ElementComponent>entity.addComponent('element');
-    const scriptComponent: ScriptComponent = <ScriptComponent>entity.addComponent('script');
+    const entity = new Entity('Test Entity');
+    const elementComponent = entity.addComponent('element');
+    const scriptComponent = entity.addComponent('script');
 
-    const digitalClock: uiText_DigitalClock = <uiText_DigitalClock>(
-      scriptComponent.create('config_setText_DigitalClock')
-    );
+    const digitalClock = scriptComponent.create('config_setText_DigitalClock');
 
     digitalClock.setNumberToText(100);
 
