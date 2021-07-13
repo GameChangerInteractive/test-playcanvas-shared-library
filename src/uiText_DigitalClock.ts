@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { ScriptAttributes, registerScript, Application, Entity, ScriptType } from 'playcanvas';
+import { ScriptAttributes, registerScript, Application, Entity } from 'playcanvas';
 import { formatSecondsToDigitalClock } from './formatSecondsToDigitalClock';
 import { uiText } from './uiText';
 

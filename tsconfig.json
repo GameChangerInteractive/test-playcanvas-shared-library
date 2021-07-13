@@ -16,9 +16,11 @@
         "src/**/*.ts",
         "tests/**/*.ts",
         "tests/**/*.js",
+        "scripts/**/*.js"
     ],
     "exclude": [
         "node_modules",
-        "dist"
+        "dist",
+        "playcanvas"
     ]
 }

@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { Application, ElementComponent, Entity, ScriptComponent, registerScript, ELEMENTTYPE_TEXT } from 'playcanvas';
+import { Application, ElementComponent, Entity, ELEMENTTYPE_TEXT } from 'playcanvas';
 import { formatSecondsToDigitalClock } from '../../src/formatSecondsToDigitalClock';
 import { uiText_DigitalClock } from '../../src/uiText_DigitalClock';
 
@@ -48,7 +48,7 @@ describe("'uiText_DigitalClock' Tests", () => {
     expect(elementComponent.text).to.equal('1:40');
   });
 
-  const checkValue = ([number, result]) => {
+  const checkValue = ([number, result]: [number, string]): void => {
     it(`Does 'uiText_DigitalClock' format ${number} to ${result}`, () => {
       const entity = new Entity('Test Entity');
       const elementComponent: ElementComponent = <ElementComponent>entity.addComponent('element');
@@ -58,8 +58,8 @@ describe("'uiText_DigitalClock' Tests", () => {
 
       digitalClock.setNumberToText(number);
 
-      expect(digitalClock.text).to.equal(result, "Unexpected Text");
-      expect(elementComponent.text).to.equal(result, "Unexpected Element Text Value");
+      expect(digitalClock.text).to.equal(result, 'Unexpected Text');
+      expect(elementComponent.text).to.equal(result, 'Unexpected Element Text Value');
     });
   };
 
